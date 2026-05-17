@@ -56,7 +56,7 @@ void Mushroom::setSprite()
         if(!(texturedown->loadFromFile("res/mushrooms/mushroom_down.png")))
             cout << "Mushroom went wrong" << endl;
     }
-    s = new sf::Sprite;
+    s = new sf::Sprite(*textureup);
     s->setTexture(*textureup);
 }
 

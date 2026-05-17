@@ -34,6 +34,6 @@ void Sundew::setSprite()
         if (!texture->loadFromFile("res/sundew.png"))
             cout <<"Sundew went wrong" <<endl;
     }
-    s = new sf::Sprite;
+    s = new sf::Sprite(*texture);
     s->setTexture(*texture);
 }

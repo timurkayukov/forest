@@ -33,6 +33,6 @@ void Sparrow::setSprite() {
         if (!texture->loadFromFile("res/sparrow.png"))
             cout <<"Sparrow fly wrong" <<endl;
     }
-    s = new sf::Sprite;
+    s = new sf::Sprite(*texture);
     s->setTexture(*texture);
 }

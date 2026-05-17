@@ -66,6 +66,6 @@ void Cat::setSprite()
         }
     }
 
-    s = new sf::Sprite;
+    s = new sf::Sprite(*texture);
     s->setTexture(texture[rand()%3]);
 }

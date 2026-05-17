@@ -51,6 +51,6 @@ void Penguin::setSprite()
         if (!texture->loadFromFile("res/Penguin.png"))
             cout <<"Penguin went wrong" <<endl;
     }
-    s = new sf::Sprite;
+    s = new sf::Sprite(*texture);
     s->setTexture(*texture);
 }

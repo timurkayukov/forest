@@ -40,6 +40,6 @@ void Lion::setSprite()
         if (!texture->loadFromFile("res/lion.png"))
             cout <<"Lion went wrong" <<endl;
     }
-    s = new sf::Sprite;
+    s = new sf::Sprite(*texture);
     s->setTexture(*texture);
 }

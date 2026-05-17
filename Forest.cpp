@@ -219,7 +219,7 @@ int Forest::init(int na, int np, int _X, int _Y)
 
     sf::ContextSettings contextSettings;
     contextSettings.depthBits = 24;
-    window = new sf::RenderWindow(sf::VideoMode(SX, SY), "Forest", sf::Style::Default, contextSettings);
+    window = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(SX, SY)), "Forest", sf::Style::Default, sf::State::Windowed, contextSettings);
     window->setActive();
 
     return 0;
@@ -296,7 +296,7 @@ int ia = 0, ip = 0, _x, _y;
 
    /* sf::ContextSettings contextSettings;
     contextSettings.depthBits = 24;
-    window = new sf::RenderWindow(sf::VideoMode(SX, SY), "Forest", sf::Style::Default, contextSettings);
+    window = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(SX, SY)), "Forest", sf::Style::Default, sf::State::Windowed, contextSettings);
     window->setActive();
 */
     return 0;
@@ -373,7 +373,7 @@ int ia = 0, ip = 0, _x, _y;
 
    /* sf::ContextSettings contextSettings;
     contextSettings.depthBits = 24;
-    window = new sf::RenderWindow(sf::VideoMode(SX, SY), "Forest", sf::Style::Default, contextSettings);
+    window = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(SX, SY)), "Forest", sf::Style::Default, sf::State::Windowed, contextSettings);
     window->setActive();
 */
     return 0;
@@ -387,16 +387,14 @@ void Forest::live()
 
     while (window->isOpen())
     {
-        sf::Event event;
-        while (window->pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window->close();
-
-        }
+        while (auto event = window->pollEvent())
+{
+    if (event->is<sf::Event::Closed>())
+        window->close();
+}
 
         // The forest allows you to guide it to the future, one step at a time.
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
         {
             if (!key_pressed)
             {
@@ -406,7 +404,7 @@ void Forest::live()
             }
         }
         else
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
         {
             if (!key_pressed)
             {
@@ -415,7 +413,7 @@ void Forest::live()
             }
         }
         else
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
         {
             if (!key_pressed)
             {

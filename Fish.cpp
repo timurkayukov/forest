@@ -35,7 +35,7 @@ void Fish::setSprite() {
         if (!texture->loadFromFile("res/fish.png"))
             cout << "Fish went wrong" << endl;
     }
-    s = new sf::Sprite;
+    s = new sf::Sprite(*texture);
     s->setTexture(*texture);
 }
 

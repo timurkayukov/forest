@@ -51,6 +51,6 @@ void Cow::setSprite()
         if (!texture->loadFromFile("res/cow.png"))
             cout <<"Cow went wrong" <<endl;
     }
-    s = new sf::Sprite;
+    s = new sf::Sprite(*texture);
     s->setTexture(*texture);
 }

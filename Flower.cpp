@@ -36,6 +36,6 @@ void Flower::setSprite()
         if (!texture->loadFromFile("res/flower.png"))
             cout <<"Flower went wrong" <<endl;
     }
-    s = new sf::Sprite;
+    s = new sf::Sprite(*texture);
     s->setTexture(*texture);
 }
