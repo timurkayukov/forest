@@ -28,3 +28,4 @@ obj/
 bin/
 
 *.depend
+build/
