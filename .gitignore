@@ -29,3 +29,4 @@ bin/
 
 *.depend
 build/
+.DS_Store
