@@ -176,6 +176,12 @@ int Forest::init(int na, int np, int _X, int _Y)
     int ia = 0, ip = 0, _x, _y;
     X = _X, Y = _Y;
 
+    sf::ContextSettings contextSettings;
+    contextSettings.depthBits = 24;
+    window = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(SX, SY)), "Forest", sf::Style::Default, sf::State::Windowed, contextSettings);
+    if (!window->setActive())
+        return 10;
+
     // We try to set them apart from each other.
     bool **taken;
     taken = new bool*[X];
@@ -215,12 +221,7 @@ int Forest::init(int na, int np, int _X, int _Y)
 
     for (int i=0; i<X; i++)
         delete[] taken[i];
-    delete taken;
-
-    sf::ContextSettings contextSettings;
-    contextSettings.depthBits = 24;
-    window = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(SX, SY)), "Forest", sf::Style::Default, sf::State::Windowed, contextSettings);
-    window->setActive();
+    delete[] taken;
 
     return 0;
 }
@@ -292,7 +293,7 @@ int ia = 0, ip = 0, _x, _y;
     }
     for (int i=0; i<X; i++)
         delete[] taken[i];
-    delete taken;
+    delete[] taken;
 
    /* sf::ContextSettings contextSettings;
     contextSettings.depthBits = 24;
@@ -369,7 +370,7 @@ int ia = 0, ip = 0, _x, _y;
     }
     for (int i=0; i<X; i++)
         delete[] taken[i];
-    delete taken;
+    delete[] taken;
 
    /* sf::ContextSettings contextSettings;
     contextSettings.depthBits = 24;
@@ -378,9 +379,6 @@ int ia = 0, ip = 0, _x, _y;
 */
     return 0;
 }
-
-
-
 void Forest::live()
 {
     if (!window || !animals || !plants) return; // Playing safe.
@@ -392,7 +390,6 @@ void Forest::live()
     if (event->is<sf::Event::Closed>())
         window->close();
 }
-
         // The forest allows you to guide it to the future, one step at a time.
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
         {
@@ -511,5 +508,3 @@ void Forest::move()
     for (int i = 0; i < n_plants; i++)
         plants[i]->grow(this);
 }
-
-

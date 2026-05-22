@@ -5,9 +5,26 @@ project(Forest)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(SFML COMPONENTS Window Graphics REQUIRED)
+find_package(SFML REQUIRED COMPONENTS Window Graphics)
 
-file(GLOB SOURCES "*.cpp")
+set(SOURCES
+    Animal.cpp
+    Carnivore.cpp
+    Cat.cpp
+    Cow.cpp
+    Creature.cpp
+    Fish.cpp
+    Flower.cpp
+    Forest.cpp
+    Herbivore.cpp
+    Lion.cpp
+    Mushroom.cpp
+    Penguin.cpp
+    Plant.cpp
+    Sparrow.cpp
+    Sundew.cpp
+    main.cpp
+)
 
 add_executable(Forest ${SOURCES})
 
