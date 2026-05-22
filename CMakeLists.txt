@@ -5,7 +5,10 @@ project(Forest)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(SFML REQUIRED COMPONENTS Window Graphics)
+find_package(SFML 3 COMPONENTS Window Graphics QUIET)
+if(NOT SFML_FOUND)
+    find_package(SFML COMPONENTS window graphics REQUIRED)
+endif()
 
 set(SOURCES
     Animal.cpp
@@ -28,4 +31,8 @@ set(SOURCES
 
 add_executable(Forest ${SOURCES})
 
-target_link_libraries(Forest PRIVATE SFML::Window SFML::Graphics)
+if(TARGET SFML::Window AND TARGET SFML::Graphics)
+    target_link_libraries(Forest PRIVATE SFML::Window SFML::Graphics)
+else()
+    target_link_libraries(Forest PRIVATE sfml-window sfml-graphics)
+endif()
