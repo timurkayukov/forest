@@ -7,18 +7,22 @@ using namespace std;
 
 
 sf::Texture* Cow::texture = NULL;
+int Cow::instances = 0;
 
 Cow::Cow()
 {
+    instances++;
 }
 
 Cow::Cow(double m, double b) : Animal(m, b)
 {
+    instances++;
 }
 
 
 Cow::Cow(double m, double b, int _x, int _y) : Animal(m, b, _x, _y)
 {
+    instances++;
 }
 
 Cow::~Cow()
@@ -27,7 +31,10 @@ Cow::~Cow()
     // Mind that if any Cow will be politely deleted she will be bully enough
     // to take the cowkind common face with her.
 
-    if (texture)
+    delete s;
+    s = NULL;
+    instances--;
+    if (instances == 0 && texture)
     {
         delete texture;
         texture = NULL;
@@ -45,6 +52,8 @@ void Cow::talk()
 
 void Cow::setSprite()
 {
+    delete s;
+    s = NULL;
     if (!texture)
     {
         texture = new sf::Texture;

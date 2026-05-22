@@ -25,6 +25,7 @@ public:
 
 private:
     static sf::Texture *texture;
+    static int instances;
     int vx, vy;
 };
 

@@ -12,26 +12,32 @@ vector <Mushroom*> Mushroom::Mycellium = vector<Mushroom*>();
 int Mushroom::Mycellium_state = 0;
 sf::Texture* Mushroom::texturedown = NULL;
 sf::Texture* Mushroom::textureup = NULL;
+int Mushroom::instances = 0;
 
 Mushroom::Mushroom(): state(true)
 {
+    instances++;
     Mycellium.push_back(this);
     mNumber = Mycellium.size() - 1;
 }
 
 Mushroom::Mushroom(double m) : Plant(m), state(true)
 {
+    instances++;
     Mycellium.push_back(this);
     mNumber = Mycellium.size() - 1;
 }
 Mushroom::Mushroom(double m, int _x, int _y): Plant(m, _x, _y), state(true)
 {
+    instances++;
     Mycellium.push_back(this);
     mNumber = Mycellium.size() - 1;
 }
 
 Mushroom::~Mushroom()
 {
+    delete s;
+    s = NULL;
     for (int i = 0; i < Mycellium.size(); i++)
     {
         if(Mycellium[i] == this) {
@@ -39,10 +45,20 @@ Mushroom::~Mushroom()
             break;
         }
     }
+    instances--;
+    if (instances == 0)
+    {
+        delete textureup;
+        delete texturedown;
+        textureup = NULL;
+        texturedown = NULL;
+    }
 }
 
 void Mushroom::setSprite()
 {
+    delete s;
+    s = NULL;
     if (!textureup)
     {
         textureup = new sf::Texture;

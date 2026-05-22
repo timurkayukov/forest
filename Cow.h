@@ -24,6 +24,7 @@ class Cow : public Animal, public Herbivore
         void setSprite() override;
     private:
         static sf::Texture *texture;
+        static int instances;
 };
 
 #endif // COW_H

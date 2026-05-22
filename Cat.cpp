@@ -9,9 +9,11 @@
 using namespace std;
 
 sf::Texture* Cat::texture = NULL;
+int Cat::instances = 0;
 
 Cat::Cat()
 {
+    instances++;
 }
 
 Cat::~Cat()
@@ -20,7 +22,10 @@ Cat::~Cat()
     // Mind that if any Cat will be politely deleted she will be infuriated enough
     // to take the catkind common face with her.
 
-    if (texture)
+    delete s;
+    s = NULL;
+    instances--;
+    if (instances == 0 && texture)
     {
         delete[] texture;
         texture = NULL;
@@ -30,10 +35,12 @@ Cat::~Cat()
 
 Cat::Cat(double m, double b) : Animal(m, b)
 {
+    instances++;
 }
 
 Cat::Cat(double m, double b, int _x, int _y) : Animal(m, b, _x, _y)
 {
+    instances++;
 }
 
 void Cat::talk()
@@ -55,6 +62,8 @@ void Cat::talk()
 
 void Cat::setSprite()
 {
+    delete s;
+    s = NULL;
     if (!texture)
     {
 

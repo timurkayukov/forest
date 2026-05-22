@@ -26,6 +26,7 @@ class Cat : public Animal, public Carnivore
         void setSprite() override;
     private:
         static sf::Texture *texture;
+        static int instances;
 
         // If you want to deal with catkind face in the very proper and polite way,
         // you can also count cats in the forest - noticing every cat that walks in and every cat that walks out.

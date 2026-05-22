@@ -22,6 +22,7 @@ class Sundew : public Plant, public Carnivore
         void setSprite() override;
     private:
         static sf::Texture *texture;
+        static int instances;
 };
 
 #endif // SUNDEW_H

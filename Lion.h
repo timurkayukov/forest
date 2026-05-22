@@ -24,6 +24,7 @@ class Lion : public Animal, public Carnivore
         void setSprite() override;
     private:
         static sf::Texture *texture;
+        static int instances;
 };
 
 #endif // LION_H

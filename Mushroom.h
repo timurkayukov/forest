@@ -20,6 +20,7 @@ protected:
     bool state;
     static sf::Texture *textureup;
     static sf::Texture *texturedown;
+    static int instances;
     static std::vector <Mushroom*> Mycellium;
     static int Mycellium_state;
 };

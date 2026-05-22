@@ -7,18 +7,22 @@ using namespace std;
 
 
 sf::Texture* Penguin::texture = NULL;
+int Penguin::instances = 0;
 
 Penguin::Penguin()
 {
+    instances++;
 }
 
 Penguin::Penguin(double m, double b) : Animal(m, b)
 {
+    instances++;
 }
 
 
 Penguin::Penguin(double m, double b, int _x, int _y) : Animal(m, b, _x, _y)
 {
+    instances++;
 }
 
 Penguin::~Penguin()
@@ -27,7 +31,10 @@ Penguin::~Penguin()
     // Mind that if any Penguin will be politely deleted she will be bully enough
     // to take the Penguin kind common face with her.
 
-    if (texture)
+    delete s;
+    s = NULL;
+    instances--;
+    if (instances == 0 && texture)
     {
         delete texture;
         texture = NULL;
@@ -45,6 +52,8 @@ void Penguin::talk()
 
 void Penguin::setSprite()
 {
+    delete s;
+    s = NULL;
     if (!texture)
     {
         texture = new sf::Texture;

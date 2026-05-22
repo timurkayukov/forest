@@ -15,5 +15,6 @@ public:
     void setSprite() override;
 private:
     static sf::Texture *texture;
+    static int instances;
 };
 #endif

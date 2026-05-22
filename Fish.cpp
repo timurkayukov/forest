@@ -7,19 +7,26 @@
 using namespace std;
 
 sf::Texture *Fish::texture = NULL;
+int Fish::instances = 0;
 
 Fish::Fish() : vx(1), vy(1) {
+    instances++;
 }
 
 Fish::Fish(double m, double b) : Animal(m, b), vx(1), vy(1) {
+    instances++;
 }
 
 
 Fish::Fish(double m, double b, int _x, int _y) : Animal(m, b, _x, _y), vx(1), vy(1) {
+    instances++;
 }
 
 Fish::~Fish() {
-    if (texture) {
+    delete s;
+    s = NULL;
+    instances--;
+    if (instances == 0 && texture) {
         delete texture;
         texture = NULL;
     }
@@ -30,6 +37,8 @@ void Fish::talk() {
 }
 
 void Fish::setSprite() {
+    delete s;
+    s = NULL;
     if (!texture) {
         texture = new sf::Texture;
         if (!texture->loadFromFile("res/fish.png"))

@@ -12,6 +12,8 @@ int main()
     //It always pays up to do things in a proper way.
     Forest* f = Forest::get_instance(10, 20, 30, 20);   // We try to initialize our Forest with
                                                     // animals/plants/cells along x/cells along y
+    if (!f)
+        return 1;
     f->live();
     Forest::clear_instance();
     return 0;
